@@ -1,0 +1,42 @@
+name: Feature request
+description: Propose new behaviour or a new accessor
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening this: `karg` has zero dependencies, no `unsafe`, and no
+        macros. A request that requires any of those is very likely a "no", so
+        say up front how the feature could work without them.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you cannot express today
+      description: A code sample that does not work, or a CLI whose help text came out wrong, beats a paragraph of intent.
+      render: rust
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API
+      description: The builder chain or accessor you would like to be able to write.
+      render: rust
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Workaround in the meantime
+      description: How you solve it with the current surface, if you do.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Which part does this touch
+      options:
+        - parsing (src/parse.rs)
+        - help rendering (src/help.rs)
+        - error text or exit codes (src/error.rs)
+        - builder API (src/lib.rs)
+    validations:
+      required: true

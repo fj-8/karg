@@ -1,0 +1,31 @@
+[package]
+name = "karg"
+version = "0.3.0"
+edition = "2021"
+rust-version = "1.74"
+description = "Dependency-free command line argument parsing: typed accessors, nested subcommands, generated help, errors that suggest the nearest flag"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/fj-8/karg"
+homepage = "https://github.com/fj-8/karg"
+documentation = "https://github.com/fj-8/karg#readme"
+readme = "README.md"
+keywords = ["cli", "arguments", "parser", "getopts", "zero-dependency"]
+categories = ["command-line-interface", "development-tools"]
+exclude = ["/.github", "/target"]
+
+[dependencies]
+
+[dev-dependencies]
+
+[features]
+# Gate for the throughput example only; the library itself has no features.
+bench = []
+
+[[example]]
+name = "bench"
+required-features = ["bench"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+

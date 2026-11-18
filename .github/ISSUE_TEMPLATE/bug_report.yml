@@ -1,0 +1,56 @@
+name: Bug report
+description: Something parses, renders or exits incorrectly
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include the exact argv and the exact declaration. Half of the value of a
+        karg bug report is that the maintainer can paste it into a test.
+  - type: textarea
+    id: declaration
+    attributes:
+      label: Command declaration
+      description: The `Cmd` builder chain you used, verbatim.
+      render: rust
+    validations:
+      required: true
+  - type: textarea
+    id: argv
+    attributes:
+      label: Arguments passed
+      description: What `parse`/`parse_std` received, one token per line if it helps.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: Which `Matches` accessor should have returned what, or which error variant and exit code.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Output of `rustc -V` and `git rev-parse --short HEAD`.
+      placeholder: rustc 1.100.0 · karg 0.3.0 (a1b2c3d)
+    validations:
+      required: true
+  - type: checkboxes
+    id: searched
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I reproduced this against the current `main`.
+          required: true
+        - label: I checked the existing issues and the syntax table in the README.
+          required: true
