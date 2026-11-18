@@ -260,6 +260,18 @@ $ cargo run --release --example bench --features bench
   public-surface break fails even when every unit test still passes.
 - `examples/` — `crop` (single command), `gitlike` (three levels), `bench`.
 
+## Elsewhere in this account
+
+The same rules applied in two other languages — zero dependencies, and every
+number in the README measured in the same checkout:
+
+- [`bitlane`](https://github.com/fj-8/bitlane) — header-only C++20 compressed
+  bitmap index over `uint32_t` sets, with a versioned, CRC32C-checked wire
+  format.
+- [`sift`](https://github.com/fj-8/sift) — pure-stdlib Python 3.11 streaming
+  estimators (HyperLogLog, Count-Min, t-digest, Welford, reservoir) and a CLI;
+  its benchmark transcript is committed and a test executes its own README.
+
 ## License
 
 Dual-licensed under either of [Apache-2.0](LICENSE-APACHE) or
