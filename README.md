@@ -273,15 +273,19 @@ starved queue.
 
 ## Elsewhere in this account
 
-The same rules applied in two other languages — zero dependencies, and every
+The same rules applied in three other languages — zero dependencies, and every
 number in the README measured in the same checkout:
 
 - [`bitlane`](https://github.com/fj-8/bitlane) — header-only C++20 compressed
-  bitmap index over `uint32_t` sets, with a versioned, CRC32C-checked wire
+  bitmap index over `uint32_t` sets, with a versioned, FNV-1a-64-checked wire
   format.
-- [`sift`](https://github.com/fj-8/sift) — pure-stdlib Python 3.11 streaming
+- [`sift`](https://github.com/fj-8/sift) — pure-stdlib Python 3.11+ streaming
   estimators (HyperLogLog, Count-Min, t-digest, Welford, reservoir) and a CLI;
   its benchmark transcript is committed and a test executes its own README.
+- [`turnstile`](https://github.com/fj-8/turnstile) — bounded MPMC queue over a
+  fixed ring, the turn-based protocol on `VarHandle` with no locks and no
+  allocation per element; its transcripts are committed too, including the
+  measurement that argued against a padding trick the design note liked.
 
 ## License
 
