@@ -3,6 +3,7 @@
 **Command line arguments that explain themselves.**
 
 <p>
+  <a href="https://github.com/fj-8/karg/actions/workflows/ci.yml"><img src="https://github.com/fj-8/karg/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="#license"><img src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue" alt="License: MIT OR Apache-2.0"></a>
   <img src="https://img.shields.io/badge/dependencies-0-informational" alt="Zero dependencies">
   <img src="https://img.shields.io/badge/unsafe-forbidden-success" alt="unsafe forbidden">
@@ -259,6 +260,16 @@ $ cargo run --release --example bench --features bench
 - `tests/api.rs` — black-box tests; only re-exported items are reachable, so a
   public-surface break fails even when every unit test still passes.
 - `examples/` — `crop` (single command), `gitlike` (three levels), `bench`.
+
+`.github/workflows/ci.yml` splits that list into seven jobs: `cargo test
+--all-targets`, `cargo test --doc` and the three example runs on ubuntu-latest
+(stable and 1.74), windows-latest and macos-latest; then `cargo fmt --all
+--check` with `clippy -D warnings`; a lock-file grep that fails if a package
+other than `karg` appears; and `cargo doc` under `RUSTDOCFLAGS=-D warnings`.
+All seven are green on `main`. The first attempt at the macOS leg came back
+`cancelled` with no runner ever assigned to it, and re-running the same commit
+passed — recorded here because a badge cannot tell a real failure from a
+starved queue.
 
 ## Elsewhere in this account
 
