@@ -261,11 +261,15 @@ $ cargo run --release --example bench --features bench
   public-surface break fails even when every unit test still passes.
 - `examples/` — `crop` (single command), `gitlike` (three levels), `bench`.
 
-`.github/workflows/ci.yml` splits that list into seven jobs: `cargo test
---all-targets`, `cargo test --doc` and the three example runs on ubuntu-latest
-(stable and 1.74), windows-latest and macos-latest; then `cargo fmt --all
---check` with `clippy -D warnings`; a lock-file grep that fails if a package
-other than `karg` appears; and `cargo doc` under `RUSTDOCFLAGS=-D warnings`.
+`.github/workflows/ci.yml` runs seven jobs, four of which are the same suite on a
+different platform or toolchain: `Test ubuntu-latest / stable`,
+`Test windows-latest / stable`, `Test macos-latest / stable` and
+`Test ubuntu-latest / 1.74`. Each of those legs runs `cargo test --all-targets`,
+`cargo test --doc` and the three example commands above as separate steps, so a
+broken example names itself instead of failing inside "tests". The other three
+jobs are `cargo fmt --all --check` with `clippy -D warnings`; a lock-file grep
+that fails if a package other than `karg` appears; and `cargo doc` under
+`RUSTDOCFLAGS=-D warnings`.
 All seven are green on `main`. The first attempt at the macOS leg came back
 `cancelled` with no runner ever assigned to it, and re-running the same commit
 passed — recorded here because a badge cannot tell a real failure from a
