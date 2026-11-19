@@ -7,7 +7,19 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Added
-- Nothing staged.
+- A root `LICENSE` file stating both grants, the `MIT OR Apache-2.0` SPDX
+  identifier that heads every source file, and the contribution clause. The full
+  texts were already in `LICENSE-APACHE` and `LICENSE-MIT`; this is the filename
+  tools reach for when they do not read the README. No terms changed.
+
+### Changed
+- The README's CI paragraph names the seven jobs as the Actions tab lists them:
+  four legs of one matrix (`ubuntu`/stable, `windows`/stable, `macos`/stable,
+  `ubuntu`/1.74), each of which runs `cargo test --all-targets`, `cargo test
+  --doc` and the three example commands as separate steps, plus Format and lints,
+  Zero dependencies and Documentation. The old sentence read as if the five
+  commands were five jobs, which is not what anyone comparing it to a run list
+  would find.
 
 ## [0.3.0] - 2026-11-18
 
