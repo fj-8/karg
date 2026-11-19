@@ -270,10 +270,18 @@ broken example names itself instead of failing inside "tests". The other three
 jobs are `cargo fmt --all --check` with `clippy -D warnings`; a lock-file grep
 that fails if a package other than `karg` appears; and `cargo doc` under
 `RUSTDOCFLAGS=-D warnings`.
-All seven are green on `main`. The first attempt at the macOS leg came back
-`cancelled` with no runner ever assigned to it, and re-running the same commit
-passed — recorded here because a badge cannot tell a real failure from a
-starved queue.
+All seven are green on `main` when every leg gets a runner, and the three most
+recent commits whose runs finished did not: `0886512`, `6c89e50` and `6a1c077`
+each reported `failure` with six jobs green and `Test macos-latest / stable`
+`cancelled` with no runner
+ever assigned to it — no steps, no start time, nothing to read. Two of the three
+were re-run on the same commit and the leg was cancelled again, once after
+twenty-five minutes of queue. The two commits before that cluster, `a7f9d9b` and
+`fe809ba`, had the identical leg scheduled on the first attempt and all seven
+jobs green, which is the state the badge is meant to describe. Recorded here
+because a badge cannot tell a real failure from a starved queue, and a run with
+one cancelled job in it is reported as a `failure` rather than as something
+amber.
 
 ## Elsewhere in this account
 

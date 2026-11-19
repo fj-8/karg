@@ -21,6 +21,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   commands were five jobs, which is not what anyone comparing it to a run list
   would find.
 
+### Fixed
+- The README said "all seven are green on `main`" and that the cancelled macOS
+  leg cleared when its commit was re-run. Neither is what the runs say: the
+  three most recent commits whose runs finished — `0886512`, `6c89e50`,
+  `6a1c077` — each reported `failure` with six jobs green and
+  `Test macos-latest / stable` cancelled with no runner assigned, and two of
+  those three were re-run on the same commit and cancelled again. The paragraph
+  now names the commits, the re-runs and the two earlier commits (`a7f9d9b`,
+  `fe809ba`) that did get all seven green on the first attempt, and says what a
+  run with one cancelled job in it is reported as — because the claim in a
+  README is supposed to be the same kind of claim as one in a run list.
+
 ## [0.3.0] - 2026-11-18
 
 Initial public release.
