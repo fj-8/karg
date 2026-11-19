@@ -13,19 +13,20 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   tools reach for when they do not read the README. No terms changed.
 
 ### Changed
+- The README's macOS paragraph counted "the three most recent commits whose runs
+  finished". That is a moving window, and `f46b112` and `d33975f` walked through
+  it with the same starved leg the day the sentence was written. It now names a
+  closed range — `0886512` to `d33975f`, five runs, one leg each never given a
+  runner — says which two were re-run and how long the longer one sat queued, and
+  gives the `gh api` call the list came from so the next reader can re-measure it
+  rather than trust the count.
 - The README's CI paragraph names the seven jobs as the Actions tab lists them:
-  four legs of one matrix (`ubuntu`/stable, `windows`/stable, `macos`/stable,
-  `ubuntu`/1.74), each of which runs `cargo test --all-targets`, `cargo test
-  --doc` and the three example commands as separate steps, plus Format and lints,
-  Zero dependencies and Documentation. The old sentence read as if the five
-  commands were five jobs, which is not what anyone comparing it to a run list
-  would find.
 
 ### Fixed
 - The README said "all seven are green on `main`" and that the cancelled macOS
   leg cleared when its commit was re-run. Neither is what the runs say: the
-  three most recent commits whose runs finished — `0886512`, `6c89e50`,
-  `6a1c077` — each reported `failure` with six jobs green and
+  three most recent commits whose runs finished at the time — `0886512`,
+  `6c89e50`, `6a1c077` — each reported `failure` with six jobs green and
   `Test macos-latest / stable` cancelled with no runner assigned, and two of
   those three were re-run on the same commit and cancelled again. The paragraph
   now names the commits, the re-runs and the two earlier commits (`a7f9d9b`,

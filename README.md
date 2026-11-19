@@ -270,18 +270,20 @@ broken example names itself instead of failing inside "tests". The other three
 jobs are `cargo fmt --all --check` with `clippy -D warnings`; a lock-file grep
 that fails if a package other than `karg` appears; and `cargo doc` under
 `RUSTDOCFLAGS=-D warnings`.
-All seven are green on `main` when every leg gets a runner, and the three most
-recent commits whose runs finished did not: `0886512`, `6c89e50` and `6a1c077`
-each reported `failure` with six jobs green and `Test macos-latest / stable`
-`cancelled` with no runner
-ever assigned to it — no steps, no start time, nothing to read. Two of the three
-were re-run on the same commit and the leg was cancelled again, once after
-twenty-five minutes of queue. The two commits before that cluster, `a7f9d9b` and
-`fe809ba`, had the identical leg scheduled on the first attempt and all seven
-jobs green, which is the state the badge is meant to describe. Recorded here
-because a badge cannot tell a real failure from a starved queue, and a run with
-one cancelled job in it is reported as a `failure` rather than as something
-amber.
+All seven are green on `main` when every leg gets a runner, and the five commits
+from `0886512` to `d33975f` whose runs finished did not: `0886512`, `6c89e50`,
+`6a1c077`, `f46b112` and `d33975f` each reported `failure` with six jobs green and
+`Test macos-latest / stable` `cancelled` with no runner ever assigned to it — no
+steps, no start time, nothing to read. Two of the five were re-run on the same
+commit and the leg was cancelled again, `6a1c077` after twenty-five minutes in the
+queue with its `started_at` still empty. The two commits before that run, `a7f9d9b`
+and `fe809ba`, had the identical leg scheduled on the first attempt and all seven
+jobs green, which is the state the badge is meant to describe. Both ends of the
+range are closed on purpose: what the next five finished runs say is a different
+sentence, and `gh api repos/fj-8/karg/actions/runs?branch=main&event=push`, read
+against the `jobs_url` of each, is how this one was written. Recorded here because
+a badge cannot tell a real failure from a starved queue, and a run with one
+cancelled job in it is reported as a `failure` rather than as something amber.
 
 ## Elsewhere in this account
 
