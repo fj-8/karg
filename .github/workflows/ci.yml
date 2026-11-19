@@ -6,6 +6,13 @@ on:
   pull_request:
   merge_group:
 
+# A new push to a branch supersedes the run before it, so the older one is
+# cancelled instead of queueing. A run on main is never cancelled: main is the
+# release, and its history is the evidence the READMEs point at.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 permissions:
   contents: read
 
