@@ -1,0 +1,69 @@
+name: Something is wrong
+description: A parse that should succeed fails, an error names the wrong flag, help lies, or a number in the README does not reproduce
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The interesting reports here are the ones where `karg` accepted or refused
+        something and said a reason that was not true. You do not have to know
+        which of the parser, the error formatter or your own code is at fault.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - parsing (flags, positionals, values, repeated args)
+        - the error message or the suggestion it names
+        - help and usage output
+        - typed accessors and defaults
+        - an example or the bench
+        - the README, the docs, or CI
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: >-
+        Quote what karg printed, or what it failed to print. If the claim is about
+        a README number, quote the sentence and the line that printed instead.
+    validations:
+      required: true
+  - type: textarea
+    id: minimal
+    attributes:
+      label: The parser and the argv
+      description: >-
+        The few lines that declare the flags, and the argument vector you passed.
+        Shortest is best; a typo you can point at is worth more than a page of
+        application code.
+      render: rust
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+      description: Why the behaviour you got is wrong — in terms of what the program was asked to do.
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: What you ran
+      value: |
+        cargo test
+        cargo clippy --all-targets --all-features -- -D warnings
+        cargo fmt --all --check
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: rustc --version and cargo --version
+      render: text
+    validations:
+      required: true
